@@ -25,17 +25,17 @@ mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    # usernameinput = request.json['username']
-    # passwordinput = request.json['password']
-    # passwordinput = request.json['is_login']
-    # passwordinput = request.json['fotoprofil']
-    # passwordinput = request.json['nama']
-    # passwordinput = request.json['email']
-    # passwordinput = request.json['telepon']
-    # passwordinput = request.json['levelmember']
+    # username_input = request.json['username']
+    # password_input = request.json['password']
+    # is_login = request.json['is_login']
+    # fotoprofil = request.json['fotoprofil']
+    # nama = request.json['nama']
+    # email = request.json['email']
+    # telepon = request.json['telepon']
+    # levelmember = request.json['levelmember']
 
-    usernameinput = datainput['username']
-    passwordinput = datainput['password']
+    username_input = datainput['username']
+    password_input = datainput['password']
     is_login = datainput['is_login']
     fotoprofil = datainput['fotoprofil']
     nama = datainput['nama']
@@ -44,7 +44,7 @@ def home():
     levelmember = datainput['levelmember']
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `regis` (`id`, `username`, `password`, `is_login`, `fotoprofil`, `nama`, `email`, `telepon`, `levelmember`) VALUES ('2', '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(usernameinput,passwordinput,is_login,fotoprofil,nama,email,telepon,levelmember)
+    query = "INSERT INTO `regis` (`id`, `username`, `password`, `is_login`, `fotoprofil`, `nama`, `email`, `telepon`, `levelmember`) VALUES ('2', '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,password_input,is_login,fotoprofil,nama,email,telepon,levelmember)
     cur.execute(query)
     mysql.connection.commit()
     cur.close()
