@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'regisdb'
+app.config['MYSQL_DB'] = 'userdb'
 
 mysql = MySQL(app)
 json_response = {}
@@ -29,12 +29,12 @@ def home():
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `regis` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,md5_password,is_login,foto_profil,nama,email,telepon,level_member)
+    query = "INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,md5_password,is_login,foto_profil,nama,email,telepon,level_member)
     query_executed = cur.execute(query)
 
     if query_executed == 1:
         mysql.connection.commit()
-        query_get_data = "SELECT `id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member` FROM `regis` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+        query_get_data = "SELECT `id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member` FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
         cur.execute(query_get_data)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()

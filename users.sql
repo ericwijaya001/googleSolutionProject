@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2020 at 03:42 PM
+-- Generation Time: Apr 04, 2020 at 05:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -19,17 +19,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `regisdb`
+-- Database: `userdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regis`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `regis` (
-  `id` int(10) NOT NULL,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `is_login` int(2) NOT NULL,
@@ -37,27 +37,27 @@ CREATE TABLE `regis` (
   `nama` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telepon` int(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `set_sumbangan` varchar(50) NOT NULL,
+  `total_sumbangan` int(50) NOT NULL,
   `level_member` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `regis`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `regis` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member`) VALUES
-(2, 'orginput1', 'orginput1', 0, 'orginput1.jpg', 'namaorginput1', 'orginput1@gmail.com', 123456789, 0),
-(3, 'orginput2', 'orginput2', 0, 'orginput2.jpg', 'namaorginput2', 'orginput2@gmail.com', 223456789, 0),
-(4, 'orginput2', 'orginput2', 0, 'orginput2.jpg', 'namaorginput2', 'orginput2@gmail.com', 223456789, 0),
-(5, 'orginput2', '09849b7220814ca43eee25e3fba51e6f', 0, 'orginput2.jpg', 'namaorginput2', 'orginput2@gmail.com', 223456789, 0);
+INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `alamat`, `set_sumbangan`, `total_sumbangan`, `level_member`) VALUES
+(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999, 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `regis`
+-- Indexes for table `users`
 --
-ALTER TABLE `regis`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -65,10 +65,10 @@ ALTER TABLE `regis`
 --
 
 --
--- AUTO_INCREMENT for table `regis`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `regis`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
