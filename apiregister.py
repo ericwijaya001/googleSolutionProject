@@ -10,41 +10,19 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'regisdb'
 
-data = {
-    'data' : {
-        'username' : 'mbo',
-        'password' : 'mbo',
-        'is_login' : 0,
-        'foto_profil' : 'mbo.jpg',
-        'nama' : 'namae_mbo',
-        'email' : 'mbo@gmmail.com',
-        'telepon' : 12345678,
-        'level_member' : 0
-    }
-}
-
 mysql = MySQL(app)
 json_response = {}
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    # username_input = request.json['data']['username']
-    # password_input = request.json['data']['password']
-    # is_login = request.json['data']['is_login']
-    # foto_profil = request.json['data']['foto_profil']
-    # nama = request.json['data']['nama']
-    # email = request.json['data']['email']
-    # telepon = request.json['data']['telepon']
-    # level_member = request.json['data']['level_member']
-
-    username_input = data['data']['username']
-    password_input = data['data']['password']
-    is_login = data['data']['is_login']
-    foto_profil = data['data']['foto_profil']
-    nama = data['data']['nama']
-    email = data['data']['email']
-    telepon = data['data']['telepon']
-    level_member = data['data']['level_member']
+    username_input = request.json['data']['username']
+    password_input = request.json['data']['password']
+    is_login = request.json['data']['is_login']
+    foto_profil = request.json['data']['foto_profil']
+    nama = request.json['data']['nama']
+    email = request.json['data']['email']
+    telepon = request.json['data']['telepon']
+    level_member = request.json['data']['level_member']
 
     # md5
     hash_obj = hashlib.md5(password_input.encode())
