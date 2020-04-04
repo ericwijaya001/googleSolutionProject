@@ -14,8 +14,8 @@ mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    username_input = request.json['username']
-    password_input = request.json['password']
+    username_input = request.json['data']['username']
+    password_input = request.json['data']['password']
     json_response = {}
 
     hash_obj = hashlib.md5(password_input.encode())
