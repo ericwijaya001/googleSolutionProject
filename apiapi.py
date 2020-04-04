@@ -1,15 +1,9 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import json
+import hashlib
 
-# bbuat coba aja
-datainput = {
-        'username' : 'orang1',
-        'password' : 'orang1'
-        }
-
-
-app = Flask(__name__,template_folder='template')
+app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -20,24 +14,35 @@ mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    # usernameinput = request.json['username']
-    # passwordinput = request.json['password']
-    usernameinput = datainput['username']
-    passwordinput = datainput['password']
+    username_input = request.json['username']
+    password_input = request.json['password']
+    json_response = {}
+
+    hash_obj = hashlib.md5(password_input.encode())
+    md5_password = hash_obj.hexdigest()
+    print(md5_password)
+
     cur = mysql.connection.cursor()
-    query = "SELECT username,password FROM `users` WHERE username='{}' AND password='{}'".format(usernameinput,passwordinput)
-    adagak = cur.execute(query)
-    # adagak = 1 brarti ada username n pass di db 
-    if adagak == 1:
-        querygetdata = "SELECT fotoprofil,nama,email,telepon,alamat,setsumbangan,totalsumbangan FROM `users` WHERE username='{}' AND password='{}'".format(usernameinput,passwordinput)
+    query = "SELECT username,password FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+    found = cur.execute(query)
+
+    # found = 1 brarti ada username n pass di db 
+    if found == 1:
+        querygetdata = "SELECT fotoprofil,nama,email,telepon,alamat,setsumbangan,totalsumbangan FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
         cur.execute(querygetdata)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
         json_data=[]
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
-        return render_template('home.html', mbo=json.loads(json.dumps(json_data[0])))
-    return render_template('home.html')
+        json_response['data'] = json.loads(json.dumps(json_data[0]))
+        json_response['code'] = 0
+        json_response['message'] = 'success'
+        return json_response
+    json_response['data'] = ''
+    json_response['code'] = 9999
+    json_response['message'] = "failed"
+    return json_response
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -7,7 +7,7 @@ datainput = {
         'username' : 'orginput1',
         'password' : 'orginput1',
         'is_login': '0', 
-        'fotoprofil' : 'orginput1.jpg', 
+        'fotoprofil' : 'orginput1.jpg',
         'nama' : 'namaorginput1', 
         'email' : 'orginput1@gmail.com', 
         'telepon' : '0123456789',
