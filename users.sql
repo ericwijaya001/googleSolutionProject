@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2020 at 04:25 AM
+-- Generation Time: Apr 04, 2020 at 02:58 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -47,7 +47,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `fotoprofil`, `nama`, `email`, `telepon`, `alamat`, `setsumbangan`, `totalsumbangan`) VALUES
-(1, 'orang1', 'orang1', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999);
+(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999);
 
 --
 -- Indexes for dumped tables
