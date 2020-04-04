@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2020 at 02:58 PM
+-- Generation Time: Apr 04, 2020 at 05:49 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -33,21 +33,22 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `is_login` int(2) NOT NULL,
-  `fotoprofil` varchar(50) NOT NULL,
+  `foto_profil` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telepon` int(50) NOT NULL,
   `alamat` varchar(50) NOT NULL,
-  `setsumbangan` varchar(50) NOT NULL,
-  `totalsumbangan` int(50) NOT NULL
+  `set_sumbangan` varchar(50) NOT NULL,
+  `total_sumbangan` int(50) NOT NULL,
+  `level_member` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `fotoprofil`, `nama`, `email`, `telepon`, `alamat`, `setsumbangan`, `totalsumbangan`) VALUES
-(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999);
+INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `alamat`, `set_sumbangan`, `total_sumbangan`, `level_member`) VALUES
+(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999, 0);
 
 --
 -- Indexes for dumped tables
