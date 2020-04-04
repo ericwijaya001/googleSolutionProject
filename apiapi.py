@@ -27,7 +27,7 @@ def home():
 
     # found = 1 brarti ada username n pass di db 
     if found == 1:
-        querygetdata = "SELECT fotoprofil,nama,email,telepon,alamat,setsumbangan,totalsumbangan FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+        querygetdata = "SELECT foto_profil,nama,email,telepon,alamat,set_sumbangan,total_sumbangan FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
         cur.execute(querygetdata)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
