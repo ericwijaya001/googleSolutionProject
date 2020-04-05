@@ -15,27 +15,21 @@ json_response = {}
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    username_input = request.json['username']
-    password_input = request.json['password']
-    isLogin = request.json['isLogin']
-    photo = request.json['photo']
-    name = request.json['name']
-    email = request.json['email']
-    telp = request.json['telp']
-    anonymous = request.json['anonymous']
+    username = request.json['username']
+    password = request.json['password']
 
     # md5
-    hash_obj = hashlib.md5(password_input.encode())
+    hash_obj = hashlib.md5(password.encode())
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `users` (`id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,md5_password,isLogin,photo,name,email,telp,anonymous)
+    query = "SELECT username FROM `users` WHERE username ='{}'".format(username)
     query_executed = cur.execute(query)
 
     if query_executed == 1:
-        mysql.connection.commit()
-        query_get_data = "SELECT `id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous` FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+        query_get_data = "UPDATE `users` SET `password` = '{}' WHERE `users`.`username` = '{}'".format(md5_password,username)
         cur.execute(query_get_data)
+        mysql.connection.commit()
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
         json_data=[]
