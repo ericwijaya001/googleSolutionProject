@@ -14,20 +14,20 @@ mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    username_input = request.json['data']['username']
-    password_input = request.json['data']['password']
+    username = request.json['data']['username']
+    password = request.json['data']['password']
     json_response = {}
 
-    hash_obj = hashlib.md5(password_input.encode())
+    hash_obj = hashlib.md5(password.encode())
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "SELECT username,password FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+    query = "SELECT username,password FROM `users` WHERE username='{}' AND password='{}'".format(username,md5_password)
     found = cur.execute(query)
 
     # found = 1 brarti ada username n pass di db 
     if found == 1:
-        querygetdata = "SELECT photo,name,email,telp,address,total FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+        querygetdata = "SELECT photo,name,email,telp,address,total FROM `users` WHERE username='{}' AND password='{}'".format(username,md5_password)
         cur.execute(querygetdata)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
