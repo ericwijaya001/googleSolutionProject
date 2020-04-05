@@ -17,24 +17,24 @@ json_response = {}
 def home():
     username_input = request.json['data']['username']
     password_input = request.json['data']['password']
-    is_login = request.json['data']['is_login']
-    foto_profil = request.json['data']['foto_profil']
-    nama = request.json['data']['nama']
+    isLogin = request.json['data']['isLogin']
+    photo = request.json['data']['photo']
+    name = request.json['data']['name']
     email = request.json['data']['email']
-    telepon = request.json['data']['telepon']
-    level_member = request.json['data']['level_member']
+    telp = request.json['data']['telp']
+    anonymous = request.json['data']['anonymous']
 
     # md5
     hash_obj = hashlib.md5(password_input.encode())
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,md5_password,is_login,foto_profil,nama,email,telepon,level_member)
+    query = "INSERT INTO `users` (`id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username_input,md5_password,isLogin,photo,name,email,telp,anonymous)
     query_executed = cur.execute(query)
 
     if query_executed == 1:
         mysql.connection.commit()
-        query_get_data = "SELECT `id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `level_member` FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
+        query_get_data = "SELECT `id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous` FROM `users` WHERE username='{}' AND password='{}'".format(username_input,md5_password)
         cur.execute(query_get_data)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
