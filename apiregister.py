@@ -15,14 +15,14 @@ json_response = {}
 
 @app.route('/',methods=['GET','POST'])
 def home():
-    username_input = request.json['data']['username']
-    password_input = request.json['data']['password']
-    isLogin = request.json['data']['isLogin']
-    photo = request.json['data']['photo']
-    name = request.json['data']['name']
-    email = request.json['data']['email']
-    telp = request.json['data']['telp']
-    anonymous = request.json['data']['anonymous']
+    username_input = request.json['username']
+    password_input = request.json['password']
+    isLogin = request.json['isLogin']
+    photo = request.json['photo']
+    name = request.json['name']
+    email = request.json['email']
+    telp = request.json['telp']
+    anonymous = request.json['anonymous']
 
     # md5
     hash_obj = hashlib.md5(password_input.encode())
@@ -41,12 +41,12 @@ def home():
         json_data=[]
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
-        json_response['data'] = json.loads(json.dumps(json_data[0]))
+        json_response = json.loads(json.dumps(json_data[0]))
         json_response['code'] = 0
         json_response['message'] = 'success'
         cur.close()
         return json_response
-    json_response['data'] = json.loads(json.dumps(json_data[0]))
+    json_response = json.loads(json.dumps(json_data[0]))
     json_response['code'] = 9999
     json_response['message'] = 'failed'
     cur.close()
