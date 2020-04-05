@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2020 at 05:51 PM
+-- Generation Time: Apr 05, 2020 at 08:40 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -32,23 +32,24 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `is_login` int(2) NOT NULL,
-  `foto_profil` varchar(50) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `isLogin` int(2) NOT NULL,
+  `photo` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telepon` int(50) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `set_sumbangan` varchar(50) NOT NULL,
-  `total_sumbangan` int(50) NOT NULL,
-  `level_member` int(10) NOT NULL
+  `telp` int(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `total` int(50) NOT NULL,
+  `anonymous` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `is_login`, `foto_profil`, `nama`, `email`, `telepon`, `alamat`, `set_sumbangan`, `total_sumbangan`, `level_member`) VALUES
-(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'orang1.jpg', 'namalengkaporang1', 'orang1@gmail.com', 81511111, 'jalan orang1', 'banyak deh', 99999999, 0);
+INSERT INTO `users` (`id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `address`, `total`, `anonymous`) VALUES
+(1, 'orang1', 'b7298498ed622b562db707cb468a17eb', 0, 'mbo.jpg', 'namae_mbo', 'mbo@gmmail.com', 12345678, 'jalanalamat', 99999999, 0),
+(2, 'mbo', 'mboooooooo', 0, 'mbo.jpg', 'mboname', 'emailmbo', 12345, 'jalanmbo', 0, 0),
+(3, 'mbo', 'mboooooooo', 0, 'mbo.jpg', 'mboname', 'emailmbo', 12345, 'jalanmbo', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -68,7 +69,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
