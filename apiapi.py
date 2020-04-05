@@ -34,11 +34,10 @@ def home():
         json_data=[]
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
-        json_response['data'] = json.loads(json.dumps(json_data[0]))
+        json_response = json.loads(json.dumps(json_data[0]))
         json_response['code'] = 0
         json_response['message'] = 'success'
         return json_response
-    json_response['data'] = ''
     json_response['code'] = 9999
     json_response['message'] = "failed"
     return json_response
