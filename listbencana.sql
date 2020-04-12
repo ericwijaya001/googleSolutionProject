@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2020 at 08:20 AM
+-- Generation Time: Apr 12, 2020 at 09:01 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -33,16 +33,19 @@ CREATE TABLE `listbencana` (
   `description` varchar(50) NOT NULL,
   `id` int(11) NOT NULL,
   `disasterPhoto` varchar(50) NOT NULL,
-  `donationMethod` varchar(50) NOT NULL
+  `donationMethod` varchar(50) NOT NULL,
+  `disasterType` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `disasterDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='totalDonation';
 
 --
 -- Dumping data for table `listbencana`
 --
 
-INSERT INTO `listbencana` (`disasterTitle`, `description`, `id`, `disasterPhoto`, `donationMethod`) VALUES
-('bencanasatu', 'deskripsibencanasatu', 1, 'bencanasatu.jpg', 'transfer'),
-('bencanadua', 'deskripsibencanadua', 2, 'bencanadua.jpg', 'paypal');
+INSERT INTO `listbencana` (`disasterTitle`, `description`, `id`, `disasterPhoto`, `donationMethod`, `disasterType`, `location`, `disasterDate`) VALUES
+('bencanasatu', 'deskripsibencanasatu', 1, 'bencanasatu.jpg', 'transfer', 'jenismusibahsatu', 'lokasisatu', '1990-03-07'),
+('bencanadua', 'deskripsibencanadua', 2, 'bencanadua.jpg', 'paypal', 'jenismusibahdua', 'lokasidua', '1991-02-23');
 
 --
 -- Indexes for dumped tables
