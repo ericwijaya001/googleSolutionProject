@@ -17,7 +17,6 @@ json_response = {}
 def home():
     username = request.json['username']
     password = request.json['password']
-    isLogin = request.json['isLogin']
     photo = request.json['photo']
     name = request.json['name']
     email = request.json['email']
@@ -29,12 +28,12 @@ def home():
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `users` (`id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', {}, '{}', '{}', '{}', {}, {});".format(username,md5_password,isLogin,photo,name,email,telp,anonymous)
+    query = "INSERT INTO `users` (`id`, `username`, `password`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', '{}', '{}', '{}', {}, {});".format(username,md5_password,photo,name,email,telp,anonymous)
     query_executed = cur.execute(query)
 
     if query_executed == 1:
         mysql.connection.commit()
-        query_get_data = "SELECT `id`, `username`, `password`, `isLogin`, `photo`, `name`, `email`, `telp`, `anonymous` FROM `users` WHERE username='{}' AND password='{}'".format(username,md5_password)
+        query_get_data = "SELECT `id`, `username`, `password`, `photo`, `name`, `email`, `telp`, `anonymous` FROM `users` WHERE username='{}' AND password='{}'".format(username,md5_password)
         cur.execute(query_get_data)
         row_headers=[x[0] for x in cur.description] #this will extract row headers
         rv = cur.fetchall()
