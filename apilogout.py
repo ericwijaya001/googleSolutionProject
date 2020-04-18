@@ -28,10 +28,7 @@ def home():
         json_response['message'] = 'success'
         cur.close()
         return json_response
-    json_response['code'] = 9999
-    json_response['message'] = 'failed'
-    cur.close()
-    return json_response
+
     
 
 if __name__ == '__main__':
