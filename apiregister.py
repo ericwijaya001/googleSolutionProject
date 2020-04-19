@@ -21,14 +21,13 @@ def home():
     name = request.json['name']
     email = request.json['email']
     telp = request.json['telp']
-    anonymous = request.json['anonymous']
 
     # md5
     hash_obj = hashlib.md5(password.encode())
     md5_password = hash_obj.hexdigest()
 
     cur = mysql.connection.cursor()
-    query = "INSERT INTO `users` (`id`, `username`, `password`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', '{}', '{}', '{}', {}, {});".format(username,md5_password,photo,name,email,telp,anonymous)
+    query = "INSERT INTO `users` (`id`, `username`, `password`, `photo`, `name`, `email`, `telp`, `anonymous`) VALUES (NULL, '{}', '{}', '{}', '{}', '{}', {}, 0);".format(username,md5_password,photo,name,email,telp)
     query_executed = cur.execute(query)
 
     if query_executed == 1:
