@@ -1,0 +1,1 @@
+print('sek mek coba')
