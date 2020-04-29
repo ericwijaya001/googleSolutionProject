@@ -99,14 +99,12 @@ def apigetlistbencana():
         c = 0
         for r in range(2):
             date.append(str(rv[r][0]))
-        print(row_headers)
-        print(date)
         for result in rv:
             json_data.append(dict(zip(row_headers,result)))
             c+=1
         json_response['data'] = json_data
 
-        query1 = "SELECT disasterTitle,description,disasterPhoto,donationMethod,disasterType,location FROM `listbencana` ORDER BY disasterDate DESC LIMIT 10"
+        query1 = "SELECT id,disasterTitle,description,disasterPhoto,donationMethod,disasterType,location,disasterDate FROM `listbencana` ORDER BY disasterDate DESC LIMIT 10"
         cur.execute(query1)
         row_headers1 = [x[0] for x in cur.description] #this will extract row headers
         rv1 = cur.fetchall()
@@ -212,6 +210,32 @@ def apiupdateprofil():
     cur.close()
     return json_response
 
+@app.route('/apidetail',methods=['GET','POST'])
+def apidetail():
+    json_response = {}
+
+    id = request.json['id']
+
+    cur = mysql.connection.cursor()
+    query = "SELECT type, need, colected FROM `detailbencana` WHERE listbencana='{}' ".format(id)
+    found = cur.execute(query)
+
+    if found >0:
+        json_response['data'] = []
+        row_headers=[x[0] for x in cur.description] #this will extract row headers
+        rv = cur.fetchall()
+        json_data=[]
+        for result in rv:
+            x = dict(zip(row_headers,result))
+            json_response['data'].append(x)
+        json_response['code'] = 0
+        json_response['message'] = 'success'
+        cur.close()
+        return json_response
+    json_response['code'] = 9997
+    json_response['message'] = "failed"
+    cur.close()
+    return json_response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
